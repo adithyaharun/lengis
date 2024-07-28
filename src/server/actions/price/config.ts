@@ -19,7 +19,7 @@ const priceOptions = {
       name: "Pertamina",
       url: "https://mypertamina.id/fuels-harga",
       callback: (html: string) => {
-        console.log(html);
+        // console.log(html);
       },
     },
   ],

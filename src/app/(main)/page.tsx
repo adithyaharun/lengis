@@ -1,10 +1,10 @@
-import { Label } from "~/components/ui/label";
-import { Separator } from "~/components/ui/separator";
-import { api, HydrateClient } from "~/trpc/server";
-import { SelectProvider } from "../_components/provider";
-import Link from "next/link";
-import { SelectLocation } from "../_components/location";
 import { Button } from "~/components/ui/button";
+import { Label } from "~/components/ui/label";
+import { api, HydrateClient } from "~/trpc/server";
+import { SelectLocation } from "../_components/location";
+import { SelectProvider } from "../_components/provider";
+
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   void api.provider.getLatest.prefetch();

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
 import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
 
