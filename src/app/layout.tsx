@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { ThemeProvider } from "~/components/providers/theme-provider"
+import { env } from "~/env";
 
 export const metadata: Metadata = {
   title: "Lengis",
