@@ -1,0 +1,39 @@
+name: Deploy Prisma
+
+on:
+  workflow_dispatch:
+    inputs:
+      CMD:
+        description: 'Prisma Command'
+        default: migrate status
+        required: true
+        type: choice
+        options:
+          - prisma migrate status
+          - prisma migrate deploy
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Generate Prisma
+        run: yarn db:migrate
+
+      - name: Report
+        uses: nikhilbadyal/telegram-forwarder@0.0.1
+        with:
+          # Telegram Bot Token
+          token: 7468447117:AAH4GyEX4uZNlwp1nAhW7e0p1zg03S6AtDY
+          # Message to be sent
+          message: "Migration success. ID: ${{ github.sha }}"
+          # Receiver of the message
+          recipient: -4283524902
