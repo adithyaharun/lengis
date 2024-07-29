@@ -8,7 +8,10 @@ import { ThemeProvider } from "~/components/providers/theme-provider"
 export const metadata: Metadata = {
   title: "Lengis",
   description:
-    "Ingin berpergian ke luar kota namun tidak tahu harga BBM di tiap kota? Yuk cari tahu harganya disini, kami sediakan juga kalkulator harga BBM beserta konsumsi BBM sesuai kebutuhanmu."
+    "Ingin berpergian ke luar kota namun tidak tahu harga BBM di tiap kota? Yuk cari tahu harganya disini, kami sediakan juga kalkulator harga BBM beserta konsumsi BBM sesuai kebutuhanmu.",
+  verification: {
+    google: env.GOOGLE_SITE_VERIFICATION,
+  }
 };
 
 export default function RootLayout({
