@@ -7,8 +7,8 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    POSTGRES_PRISMA_URL: z.string().url(),
-    SUPABASE_URL: z.string().url(),
+    POSTGRES_URL: z.string().url(),
+    NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
     SUPABASE_JWT_SECRET: z.string(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
@@ -29,8 +29,8 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
-    POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
-    SUPABASE_URL: process.env.SUPABASE_URL,
+    POSTGRES_URL: process.env.POSTGRES_URL,
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET,
     NODE_ENV: process.env.NODE_ENV,
   },
