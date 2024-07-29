@@ -8,6 +8,8 @@ export const env = createEnv({
    */
   server: {
     POSTGRES_PRISMA_URL: z.string().url(),
+    SUPABASE_URL: z.string().url(),
+    SUPABASE_JWT_SECRET: z.string(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -28,6 +30,8 @@ export const env = createEnv({
    */
   runtimeEnv: {
     POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
+    SUPABASE_URL: process.env.SUPABASE_URL,
+    SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET,
     NODE_ENV: process.env.NODE_ENV,
   },
   /**
