@@ -15,16 +15,15 @@ export function PageContent({ slug }: PageContentProps) {
 
   return (
     <div className="flex space-x-2">
-      {query.isFetching && (
+      {query.isFetching ? (
         <>
           <Skeleton className="h-10 w-[128px]" />
           <Skeleton className="h-10 w-[180px]" />
           <Skeleton className="h-10 w-[160px]" />
         </>
-      )}
-      {!query.isFetching && (
+      ) : (page && (
         <div dangerouslySetInnerHTML={{ __html: page.content }} />
-      )}
+      ))}
     </div>
   );
 }
