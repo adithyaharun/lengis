@@ -33,6 +33,8 @@ jobs:
 
       - name: Generate Prisma
         run: yarn db:migrate
+        env:
+          POSTGRES_PRISMA_URL: ${{ secrets.POSTGRES_PRISMA_URL }}
 
       - name: Discord notification
         env:
