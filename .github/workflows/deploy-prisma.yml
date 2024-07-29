@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       CMD:
-        description: 'Prisma Command'
+        description: "Prisma Command"
         default: migrate status
         required: true
         type: choice
@@ -13,17 +13,20 @@ on:
           - prisma migrate deploy
 
 jobs:
-  seed:
+  deploy-prisma:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: "yarn"
 
       - name: Install Dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Generate Prisma
         run: yarn db:migrate
