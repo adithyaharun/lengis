@@ -11,6 +11,9 @@ on:
         options:
           - prisma migrate status
           - prisma migrate deploy
+  push:
+    branches:
+      - main
 
 jobs:
   deploy-prisma:
