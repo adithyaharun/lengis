@@ -1,7 +1,7 @@
 "use client";
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
-import { Skeleton } from "~/components/ui/skeleton";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/atoms/select";
+import { Skeleton } from "~/components/atoms/skeleton";
 
 import { api } from "~/trpc/react";
 

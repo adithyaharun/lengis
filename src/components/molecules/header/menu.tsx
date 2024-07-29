@@ -8,7 +8,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "~/components/ui/drawer"
+} from "~/components/atoms/drawer"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,8 +18,8 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu"
-import { Button } from "~/components/ui/button"
+} from "~/components/atoms/dropdown-menu"
+import { Button } from "~/components/atoms/button"
 import Link from "next/link";
 import { useTheme } from "next-themes";
 
@@ -44,6 +44,10 @@ export function MenuMobile() {
 }
 
 export function Menu() {
+  const onPrivacyClicked = () => {
+    document.dispatchEvent(new CustomEvent("app::SHOW_PRIVACY"));
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none">
@@ -55,7 +59,7 @@ export function Menu() {
           <code className="text-black/50 dark:text-white/50">1.0</code>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Kebijakan Privasi</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onPrivacyClicked()}>Kebijakan Privasi</DropdownMenuItem>
         <DropdownMenuItem className="flex justify-between" asChild>
           <Link href="https://github.com/adithyaharun/lengis" target="_blank">
             <span>GitHub</span>

@@ -12,6 +12,7 @@
   },
   "aliases": {
     "components": "~/components",
+    "ui": "~/components/atoms",
     "utils": "~/lib/utils"
   }
 }

@@ -11,10 +11,14 @@ datasource db {
 }
 
 model Provider {
-    id        Int      @id @default(autoincrement())
-    name      String
-    imageUrl  String?
-    website   String?
+    id       Int     @id @default(autoincrement())
+    name     String
+    imageUrl String?
+    website  String?
+
+    isActive       Boolean @default(true)
+    inactiveReason String?
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
@@ -25,13 +29,18 @@ model Provider {
 }
 
 model Product {
-    id         Int      @id @default(autoincrement())
-    name       String
-    imageUrl   String?
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @updatedAt
+    id       Int     @id @default(autoincrement())
+    name     String
+    imageUrl String?
+
     providerId Int
     provider   Provider @relation(fields: [providerId], references: [id])
+
+    isActive       Boolean @default(true)
+    inactiveReason String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     /// @HideField()
     prices ProductPrice[]
@@ -49,6 +58,8 @@ model Location {
 
     /// @HideField()
     prices ProductPrice[]
+
+    @@index([name])
 }
 
 model ProductPrice {
@@ -60,4 +71,18 @@ model ProductPrice {
     updatedAt  DateTime @updatedAt
     location   Location @relation(fields: [locationId], references: [id])
     product    Product  @relation(fields: [productId], references: [id])
+
+    @@unique([locationId, productId])
+}
+
+model Page {
+    id        Int      @id @default(autoincrement())
+    title     String
+    slug      String   @unique
+    content   String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([title])
+    @@index([slug])
 }

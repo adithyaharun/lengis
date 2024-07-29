@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Header from "../../components/header";
+import Header from "../../components/molecules/header";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (

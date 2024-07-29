@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Skeleton } from "~/components/ui/skeleton";
-import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
+import { Skeleton } from "~/components/atoms/skeleton";
+import { ToggleGroup, ToggleGroupItem } from "~/components/atoms/toggle-group";
 
 import { api } from "~/trpc/react";
 
@@ -27,6 +27,7 @@ export function SelectProvider() {
               value={provider.id.toString()}
               aria-label="Toggle bold"
               className="p-4 flex items-center space-x-2"
+              disabled={!provider.isActive}
             >
               <Image
                 src={provider.imageUrl ?? ""}

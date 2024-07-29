@@ -1,5 +1,5 @@
-import { Button } from "~/components/ui/button";
-import { Label } from "~/components/ui/label";
+import { Button } from "~/components/atoms/button";
+import { Label } from "~/components/atoms/label";
 import { api, HydrateClient } from "~/trpc/server";
 import { SelectLocation } from "../_components/location";
 import { SelectProvider } from "../_components/provider";
