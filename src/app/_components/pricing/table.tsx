@@ -76,7 +76,7 @@ export function PricingTable({ providerId, locationId }: Props) {
               </div>
               <div className="flex flex-col items-end">
                 <p className="text-xl font-bold text-green-700">
-                  {toCurrencyFormat(price.price.toNumber())}
+                  {price.price.toNumber().toLocaleString()}
                 </p>
                 <p className="text-sm italic text-muted-foreground">
                   {recentlySynced(price.product.lastSyncAt) &&
