@@ -7,7 +7,6 @@ import { SelectLocation } from "../location";
 import { SelectProvider } from "../provider";
 import { PricingTable } from "./table";
 
-export const dynamic = "force-dynamic";
 export function PricingForm() {
   const [provider, setProvider] = useState<Provider | null>(null);
   const [location, setLocation] = useState<Location | null>(null);

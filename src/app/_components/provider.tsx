@@ -12,7 +12,6 @@ type SelectProviderProps = {
   onSelected?: (provider: Provider) => void;
 };
 
-export const dynamic = "force-dynamic";
 export function SelectProvider(props: SelectProviderProps) {
   const [providers, query] = api.provider.getLatest.useSuspenseQuery();
 

@@ -16,7 +16,6 @@ type SelectLocationProps = {
   onSelected?: (location: Location) => void;
 };
 
-export const dynamic = "force-dynamic";
 export function SelectLocation(props: SelectLocationProps) {
   const [locations, query] = api.location.getLatest.useSuspenseQuery();
   return (

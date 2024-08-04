@@ -2,10 +2,9 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 
-import { TRPCReactProvider } from "~/trpc/react";
+import { Toaster } from "~/components/atoms/toaster";
 import { ThemeProvider } from "~/components/providers/theme-provider";
 import { env } from "~/env";
-import { Toaster } from "~/components/atoms/toaster";
 
 export const metadata: Metadata = {
   title: "Lengis",
