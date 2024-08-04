@@ -16,12 +16,14 @@ CREATE TABLE "Provider" (
 CREATE TABLE "Product" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
     "imageUrl" TEXT,
     "providerId" INTEGER NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "inactiveReason" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "lastSyncAt" TIMESTAMP(3),
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
@@ -64,6 +66,9 @@ CREATE TABLE "Page" (
 
 -- CreateIndex
 CREATE INDEX "Provider_name_idx" ON "Provider"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Product_slug_key" ON "Product"("slug");
 
 -- CreateIndex
 CREATE INDEX "Product_name_idx" ON "Product"("name");

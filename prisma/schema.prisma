@@ -32,6 +32,7 @@ model Provider {
 model Product {
     id       Int     @id @default(autoincrement())
     name     String
+    slug     String  @unique
     imageUrl String?
 
     providerId Int
@@ -42,6 +43,10 @@ model Product {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    lastSyncAt DateTime?
+
+    isSubsidized Boolean @default(false)
 
     /// @HideField()
     prices ProductPrice[]

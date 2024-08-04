@@ -1,28 +1,13 @@
-import { Button } from "~/components/atoms/button";
-import { Label } from "~/components/atoms/label";
-import { api, HydrateClient } from "~/trpc/server";
-import { SelectLocation } from "../_components/location";
-import { SelectProvider } from "../_components/provider";
+import { HydrateClient } from "~/trpc/server";
+import { PricingForm } from "../_components/pricing";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  void api.provider.getLatest.prefetch();
-
   return (
     <HydrateClient>
-      <div className="container max-w-xl mx-auto py-16 flex w-full flex-col space-y-8">
-        <div className="flex flex-col space-y-4">
-          <div className="flex flex-col space-y-2">
-            <Label>Pilih Penyedia BBM</Label>
-            <SelectProvider />
-          </div>
-          <div className="flex flex-col space-y-2">
-            <Label>Wilayah</Label>
-            <SelectLocation />
-          </div>
-          <Button>Cek Harga</Button>
-        </div>
+      <div className="container mx-auto flex w-full max-w-xl flex-col space-y-8 py-16">
+        <PricingForm />
       </div>
     </HydrateClient>
   );
