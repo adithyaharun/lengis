@@ -11,6 +11,34 @@ type Props = {
   locationId: number;
 };
 
+const recentlySynced = (lastSyncAt: Date | null) => {
+  if (!lastSyncAt) return false;
+
+  const now = new Date();
+  const diff = now.getTime() - lastSyncAt.getTime();
+  const diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+  return diffDays < 7;
+};
+
+const PricingTableSkeleton = () => {
+  return (
+    <div className="flex animate-pulse flex-col">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div
+          className="flex items-center justify-between border-b border-border p-4"
+          key={i}
+        >
+          <div className="h-6 w-1/2 rounded bg-black/10 dark:bg-muted" />
+          <div className="flex flex-col items-end space-y-2">
+            <div className="h-6 w-[128px] rounded bg-black/10 dark:bg-muted" />
+            <div className="h-4 w-[72px] rounded bg-black/10 dark:bg-muted" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 export function PricingTable({ providerId, locationId }: Props) {
   const [prices, priceQuery] = api.price.getPrices.useSuspenseQuery({
     providerId,
@@ -41,7 +69,7 @@ export function PricingTable({ providerId, locationId }: Props) {
                   style={{ width: "auto", height: 20 }}
                 />
                 {price.product.isSubsidized && (
-                  <p className="text-sm italic text-muted-foreground">
+                  <p className="text-xs font-medium text-muted-foreground">
                     (Di-subsidi Pemerintah)
                   </p>
                 )}
@@ -51,9 +79,9 @@ export function PricingTable({ providerId, locationId }: Props) {
                   {toCurrencyFormat(price.price.toNumber())}
                 </p>
                 <p className="text-sm italic text-muted-foreground">
-                  {price.product.lastSyncAt &&
+                  {recentlySynced(price.product.lastSyncAt) &&
                     "Update: " +
-                      price.product.lastSyncAt.toLocaleString("id", {
+                      price.product.lastSyncAt?.toLocaleString("id", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
@@ -69,22 +97,3 @@ export function PricingTable({ providerId, locationId }: Props) {
     </Card>
   );
 }
-
-const PricingTableSkeleton = () => {
-  return (
-    <div className="flex animate-pulse flex-col">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div
-          className="flex items-center justify-between border-b border-border p-4"
-          key={i}
-        >
-          <div className="h-6 w-1/2 rounded bg-black/10 dark:bg-muted" />
-          <div className="flex flex-col items-end space-y-2">
-            <div className="h-6 w-[128px] rounded bg-black/10 dark:bg-muted" />
-            <div className="h-4 w-[72px] rounded bg-black/10 dark:bg-muted" />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
