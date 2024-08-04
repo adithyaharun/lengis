@@ -27,6 +27,6 @@ const priceOptions = {
 export async function fetchPrice() {
   for (const provider of priceOptions.providers) {
     const res = await got(provider.url);
-    provider.callback(res.body);
+    await provider.callback(res.body);
   }
 }

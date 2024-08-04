@@ -1,6 +1,6 @@
 "use client";
 
-import { Provider } from "@prisma/client";
+import type { Provider } from "@prisma/client";
 import Image from "next/image";
 import { useEffect } from "react";
 import { Skeleton } from "~/components/atoms/skeleton";

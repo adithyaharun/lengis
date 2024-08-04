@@ -1,7 +1,6 @@
 "use client";
 
 import type { Location } from "@prisma/client";
-import { useEffect } from "react";
 import {
   Select,
   SelectContent,

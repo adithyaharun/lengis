@@ -1,6 +1,5 @@
-import { Prisma, type Product } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import * as cheerio from "cheerio";
-import logger from "~/lib/logger";
 import { db } from "~/server/db";
 
 export async function scrapPertamina(html: string) {
