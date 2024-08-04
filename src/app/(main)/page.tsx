@@ -1,8 +1,6 @@
 import { HydrateClient } from "~/trpc/server";
 import { PricingForm } from "../_components/pricing";
 
-export const dynamic = "force-dynamic";
-
 export default async function Home() {
   return (
     <HydrateClient>

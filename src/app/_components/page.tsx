@@ -8,6 +8,7 @@ type PageContentProps = {
   slug: string;
 };
 
+export const dynamic = "force-dynamic";
 export function PageContent({ slug }: PageContentProps) {
   const [page, query] = api.page.findPage.useSuspenseQuery({ slug });
 
