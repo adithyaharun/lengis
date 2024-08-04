@@ -28,7 +28,7 @@ export async function scrapPertamina(html: string) {
     // Since Bio-solar that aided and non-aided by government using the same logo,
     // we need to differentiate between them by checking text on certain parts.
     if ($(slide).find("div div p").text().includes("**BioSolar Subsidi")) {
-      slug += "-aid";
+      slug += "-subsidized";
     }
 
     let product = products.find((p) => p.slug === slug);
@@ -41,6 +41,7 @@ export async function scrapPertamina(html: string) {
           providerId: 1,
           imageUrl: image ?? "",
           isActive: true,
+          isSubsidized: slug.includes("subsidized"),
         },
         include: { prices: true },
       });
