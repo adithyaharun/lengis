@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { Card, CardContent } from "~/components/atoms/card";
-import { toCurrencyFormat } from "~/lib/utils";
 import { api } from "~/trpc/react";
 
 type Props = {
