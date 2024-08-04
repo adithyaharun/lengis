@@ -32,13 +32,20 @@ export function PricingTable({ providerId, locationId }: Props) {
               key={price.id}
               className="flex cursor-pointer items-center justify-between border-b border-border p-4 hover:bg-muted"
             >
-              <Image
-                height={128}
-                width={128}
-                src={price.product.imageUrl ?? ""}
-                alt={price.product.name}
-                style={{ width: "auto", height: 20 }}
-              />
+              <div className="flex flex-col items-start space-y-1">
+                <Image
+                  height={128}
+                  width={128}
+                  src={price.product.imageUrl ?? ""}
+                  alt={price.product.name}
+                  style={{ width: "auto", height: 20 }}
+                />
+                {price.product.isSubsidized && (
+                  <p className="text-sm italic text-muted-foreground">
+                    (Di-subsidi Pemerintah)
+                  </p>
+                )}
+              </div>
               <div className="flex flex-col items-end">
                 <p className="text-xl font-bold text-green-700">
                   {toCurrencyFormat(price.price.toNumber())}
