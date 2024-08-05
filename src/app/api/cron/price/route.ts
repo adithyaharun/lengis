@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { syncPrice } from "~/server/actions/price";
+import { syncPrice } from "~/server/actions/price/sync";
 
 export const dynamic = "force-dynamic";
 

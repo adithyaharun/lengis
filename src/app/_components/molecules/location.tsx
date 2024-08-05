@@ -1,7 +1,6 @@
 "use client";
 
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { revalidatePath } from "next/cache";
 import {
   Select,
   SelectContent,

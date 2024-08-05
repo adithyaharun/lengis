@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { Card, CardContent } from "~/app/_components/atoms/card";
 import { getPrices } from "~/server/actions/price";
-import { Separator } from "../../atoms/separator";
 
 type Props = {
   providerId: number;

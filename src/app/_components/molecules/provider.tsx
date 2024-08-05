@@ -1,8 +1,6 @@
 "use client";
 
-import { type Provider } from "@prisma/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { revalidatePath } from "next/cache";
 import Image from "next/image";
 import { Skeleton } from "~/app/_components/atoms/skeleton";
 import {

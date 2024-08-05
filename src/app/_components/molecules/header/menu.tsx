@@ -1,4 +1,7 @@
 import { ExternalLinkIcon, MenuIcon, MoonIcon, SunIcon } from "lucide-react";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { Button } from "~/app/_components/atoms/button";
 import {
   Drawer,
   DrawerClose,
@@ -19,10 +22,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/app/_components/atoms/dropdown-menu";
-import { Button } from "~/app/_components/atoms/button";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { redirect } from "next/navigation";
 
 export function MenuMobile() {
   return (

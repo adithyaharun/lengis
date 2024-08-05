@@ -213,8 +213,8 @@ async function seedLocations() {
       !locationsOnDatabase.find(
         (l) =>
           l.name === location.name &&
-          l.latitude === new Prisma.Decimal(location.latitude) &&
-          l.longitude === new Prisma.Decimal(location.longitude),
+          l.latitude === location.latitude &&
+          l.longitude === location.longitude,
       )
     ) {
       newLocations.push(location);

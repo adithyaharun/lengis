@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import Header from "../_components/molecules/header";
-import { cookies } from "next/headers";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (

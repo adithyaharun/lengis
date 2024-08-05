@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import * as cheerio from "cheerio";
 import { db } from "~/server/db";
 
@@ -78,7 +77,7 @@ export async function scrapPertamina(html: string) {
           });
         }
 
-        const priceOnDecimal = new Prisma.Decimal(price);
+        const priceOnDecimal = Number(price);
 
         if (product) {
           const existingPrice = product.prices.find(
