@@ -1,32 +1,19 @@
-import got from "got";
-import { scrapPertamina } from "./pertamina";
+"use server";
 
-export type Source = {
-  listPath: string;
-  itemPath: string;
-};
+import type { z } from "zod";
+import type { getPricesSchema } from "./schema";
+import { db } from "~/server/db";
 
-export type SourceProviderCallback = (html: string) => void;
-
-export type SourceProvider = {
-  name: string;
-  url: string;
-  callback: SourceProviderCallback;
-};
-
-const priceOptions = {
-  providers: [
-    {
-      name: "Pertamina",
-      url: "https://mypertamina.id/fuels-harga",
-      callback: scrapPertamina,
+export async function getPrices(input: z.infer<typeof getPricesSchema>) {
+  return await db.productPrice.findMany({
+    include: {
+      product: true,
     },
-  ],
-};
-
-export async function fetchPrice() {
-  for (const provider of priceOptions.providers) {
-    const res = await got(provider.url);
-    await provider.callback(res.body);
-  }
+    where: {
+      locationId: input.locationId,
+      product: {
+        providerId: input.providerId,
+      },
+    },
+  });
 }

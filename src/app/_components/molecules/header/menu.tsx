@@ -8,7 +8,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "~/components/atoms/drawer"
+} from "~/app/_components/atoms/drawer";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,10 +18,11 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "~/components/atoms/dropdown-menu"
-import { Button } from "~/components/atoms/button"
+} from "~/app/_components/atoms/dropdown-menu";
+import { Button } from "~/app/_components/atoms/button";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { redirect } from "next/navigation";
 
 export function MenuMobile() {
   return (
@@ -32,11 +33,18 @@ export function MenuMobile() {
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Cek Harga BBM!</DrawerTitle>
-          <DrawerDescription><code>LENGIS_20240727_1_0_113</code></DrawerDescription>
+          <DrawerDescription>
+            <code>LENGIS_20240727_1_0_113</code>
+          </DrawerDescription>
         </DrawerHeader>
         <DrawerFooter>
-          <Button variant="secondary">Submit</Button>
-          <DrawerClose>Close</DrawerClose>
+          <Link href="/privacy">
+            <Button variant="secondary">Kebijakan Privasi</Button>
+          </Link>
+          <Link href="https://github.com/adithyaharun/lengis">
+            <Button variant="secondary">GitHub</Button>
+          </Link>
+          <DrawerClose>Tutup</DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
@@ -44,22 +52,20 @@ export function MenuMobile() {
 }
 
 export function Menu() {
-  const onPrivacyClicked = () => {
-    document.dispatchEvent(new CustomEvent("app::SHOW_PRIVACY"));
-  }
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none">
         <MenuIcon />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-48">
-        <DropdownMenuLabel className="text-sm flex flex-col">
+        <DropdownMenuLabel className="flex flex-col text-sm">
           <p className="font-semibold">Cek Harga BBM!</p>
           <code className="text-black/50 dark:text-white/50">1.0</code>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => onPrivacyClicked()}>Kebijakan Privasi</DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/privacy">Kebijakan Privasi</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem className="flex justify-between" asChild>
           <Link href="https://github.com/adithyaharun/lengis" target="_blank">
             <span>GitHub</span>
@@ -73,29 +79,26 @@ export function Menu() {
 }
 
 export function MenuTheme() {
-  const { setTheme, theme } = useTheme()
+  const { setTheme, theme } = useTheme();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none">
         <div className="relative">
           <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:rotate-90 dark:scale-0" />
-          <MoonIcon className="top-0 absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <MoonIcon className="absolute top-0 h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuRadioGroup value={theme} onValueChange={(value) => setTheme(value)}>
-          <DropdownMenuRadioItem value="light">
-            Light
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="dark">
-            Dark
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="system">
-            System
-          </DropdownMenuRadioItem>
+        <DropdownMenuRadioGroup
+          value={theme}
+          onValueChange={(value) => setTheme(value)}
+        >
+          <DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

@@ -2,9 +2,10 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 
-import { Toaster } from "~/components/atoms/toaster";
-import { ThemeProvider } from "~/components/providers/theme-provider";
+import { Toaster } from "~/app/_components/atoms/toaster";
+import { ThemeProvider } from "~/app/_components/providers/theme-provider";
 import { env } from "~/env";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Lengis",
@@ -22,7 +23,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-background font-sans tracking-tight antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <Providers>{children}</Providers>
         </ThemeProvider>
         <Toaster />
       </body>

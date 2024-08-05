@@ -1,18 +1,40 @@
-import { api, HydrateClient } from "~/trpc/server";
-import { PricingForm } from "../_components/pricing";
-
-export const dynamic = "force-dynamic";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import PricingForm from "../_components/molecules/pricing";
+import { getProviders } from "~/server/actions/provider";
+import { getLocations } from "~/server/actions/location";
+import { cookies } from "next/headers";
+import { PricingTable } from "../_components/molecules/pricing/table";
 
 export default async function Home() {
-  void api.location.getLatest.prefetch();
-  void api.provider.getLatest.prefetch();
-  void api.page.findPage.prefetch({ slug: "privacy-policy" });
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["providers"],
+    queryFn: getProviders,
+  });
+  await queryClient.prefetchQuery({
+    queryKey: ["locations"],
+    queryFn: getLocations,
+  });
+
+  const providerId = cookies().get("providerId")?.value;
+  const locationId = cookies().get("locationId")?.value;
 
   return (
-    <HydrateClient>
-      <div className="container mx-auto flex w-full max-w-xl flex-col space-y-8 py-16">
+    <div className="container mx-auto flex w-full max-w-xl flex-col space-y-8 py-16">
+      <HydrationBoundary state={dehydrate(queryClient)}>
         <PricingForm />
-      </div>
-    </HydrateClient>
+        {providerId && locationId && (
+          <PricingTable
+            providerId={Number(providerId)}
+            locationId={Number(locationId)}
+          />
+        )}
+      </HydrationBoundary>
+    </div>
   );
 }

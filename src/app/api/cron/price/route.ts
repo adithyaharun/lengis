@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { fetchPrice } from "~/server/actions/price";
+import { syncPrice } from "~/server/actions/price";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  await fetchPrice();
+  await syncPrice();
 
   return NextResponse.json({
     success: true,
