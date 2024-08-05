@@ -33,7 +33,7 @@ export function MenuMobile() {
         <DrawerHeader>
           <DrawerTitle>Cek Harga BBM!</DrawerTitle>
           <DrawerDescription>
-            <code>LENGIS_20240727_1_0_113</code>
+            <code>v1.0</code>
           </DrawerDescription>
         </DrawerHeader>
         <DrawerFooter>
@@ -59,7 +59,7 @@ export function Menu() {
       <DropdownMenuContent align="start" className="w-48">
         <DropdownMenuLabel className="flex flex-col text-sm">
           <p className="font-semibold">Cek Harga BBM!</p>
-          <code className="text-black/50 dark:text-white/50">1.0</code>
+          <code className="text-black/50 dark:text-white/50">v1.0</code>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
