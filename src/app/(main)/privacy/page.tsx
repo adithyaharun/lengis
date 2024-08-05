@@ -1,5 +1,7 @@
 import { db } from "~/server/db";
 
+export const dynamic = "force-dynamic";
+
 export default async function PrivacyPage() {
   const page = await db.page.findUnique({
     where: {
